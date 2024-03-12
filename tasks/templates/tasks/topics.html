@@ -1,0 +1,23 @@
+{% extends "tasks/base.html" %}
+{% block content %}
+  <p>Ваши задачи</p>
+  <ul>
+    {% for topic in topics %}
+    
+    <ul>
+        <li> Название задачи:  {{ topic.title }}</li>
+        <li> Описание:  {{ topic.text }}</li>
+        <li> Приориет:  {{ topic.priority }}</li>
+        <li> Готовность:  {{ topic.state }}</li>
+        <li> Дата окончания:  {{ topic.date_finish }}</li>
+        <li> Дата начала:  {{ topic.date_added }}</li>
+     </ul> 
+     <p>
+        <a href="{% url 'tasks:edit_topic' topic.id %}">Изменить задачу</a>
+    <p> 
+    {% empty %}
+      <li>Нет задач и хорошо!</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'tasks:new_topic' %}">Добавить новую задачу:</a>
+{% endblock content %} 
